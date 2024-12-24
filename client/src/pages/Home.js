@@ -1,138 +1,240 @@
 import React from 'react';
-import { Typography, Button, Box, Grid, Card, CardMedia, CardContent } from '@mui/material';
+import { Container, Typography, Box, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const categories = [
-    {
-      title: "Men's Collection",
-      image: '/images/mens.jpg',
-      link: '/products?category=men'
-    },
-    {
-      title: "Women's Collection",
-      image: '/images/womens.jpg',
-      link: '/products?category=women'
-    },
-    {
-      title: 'Featured Looks',
-      image: '/images/featured.jpg',
-      link: '/products?category=featured'
-    }
-  ];
-
   return (
     <Box>
+      {/* Hero Section */}
       <Box
         sx={{
-          height: '80vh',
+          background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/hero-bg.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '80vh',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          background: '#000000',
-          position: 'relative',
-          mb: 6,
+          color: 'white',
         }}
       >
-        <Typography 
-          variant="h1" 
-          component="h1" 
-          sx={{ 
-            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-            mb: 4,
-            animation: 'slideUp 1.5s ease-out',
-            '@keyframes slideUp': {
-              from: {
-                opacity: 0,
-                transform: 'translateY(20px)',
-              },
-              to: {
-                opacity: 1,
-                transform: 'translateY(0)',
-              },
-            },
-          }}
-        >
-          Luxury Fitness Wear
-        </Typography>
-        <Typography 
-          variant="h5" 
-          component="h2" 
-          sx={{ 
-            mb: 4,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            color: 'primary.main',
-            fontWeight: 600,
-            animation: 'slideUp 1.5s ease-out 0.3s',
-            animationFillMode: 'backwards',
-          }}
-        >
-          Where Style Meets Performance
-        </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          component={Link}
-          to="/products"
-          sx={{ 
-            minWidth: 200,
-            fontSize: '1.1rem',
-            animation: 'fadeIn 2s ease-out 0.6s',
-            animationFillMode: 'backwards',
-            '@keyframes fadeIn': {
-              from: {
-                opacity: 0,
-              },
-              to: {
-                opacity: 1,
-              },
-            },
-          }}
-        >
-          Shop Now
-        </Button>
+        <Container maxWidth="lg">
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: { xs: '2.5rem', md: '4rem' },
+                  fontWeight: 'bold',
+                  mb: 2,
+                  color: '#D4AF37'
+                }}
+              >
+                Elevate Your Style
+              </Typography>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: { xs: '1.5rem', md: '2rem' },
+                  mb: 4,
+                  color: 'white'
+                }}
+              >
+                Premium Quality Printed T-Shirts
+              </Typography>
+              <Button
+                component={Link}
+                to="/products"
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: '#D4AF37',
+                  color: 'black',
+                  px: 4,
+                  py: 2,
+                  '&:hover': {
+                    backgroundColor: '#B69121',
+                  }
+                }}
+              >
+                Shop Now
+              </Button>
+            </Grid>
+          </Grid>
+        </Container>
       </Box>
 
-      <Typography 
-        variant="h2" 
-        component="h2" 
-        align="center" 
-        sx={{ mb: 6 }}
-      >
-        Our Collections
-      </Typography>
-
-      <Grid container spacing={4} sx={{ px: { xs: 2, md: 6 } }}>
-        {categories.map((category) => (
-          <Grid item xs={12} md={4} key={category.title}>
-            <Card 
-              component={Link}
-              to={category.link}
-              sx={{ 
-                textDecoration: 'none',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="300"
-                image={category.image}
-                alt={category.title}
-              />
-              <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                <Typography variant="h5" component="h3">
-                  {category.title}
-                </Typography>
-              </CardContent>
-            </Card>
+      {/* Features Section */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center', p: 3 }}>
+              <Typography variant="h5" sx={{ color: '#D4AF37', mb: 2 }}>
+                Premium Quality
+              </Typography>
+              <Typography>
+                Crafted with the finest materials for ultimate comfort and durability
+              </Typography>
+            </Box>
           </Grid>
-        ))}
-      </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center', p: 3 }}>
+              <Typography variant="h5" sx={{ color: '#D4AF37', mb: 2 }}>
+                Unique Designs
+              </Typography>
+              <Typography>
+                Express yourself with our exclusive collection of designs
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center', p: 3 }}>
+              <Typography variant="h5" sx={{ color: '#D4AF37', mb: 2 }}>
+                Custom Orders
+              </Typography>
+              <Typography>
+                Create your own design with our customization service
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+      {/* Collections Section */}
+<Container maxWidth="lg" sx={{ py: 8 }}>
+  <Typography 
+    variant="h2" 
+    component="h2" 
+    align="center" 
+    sx={{ 
+      mb: 6,
+      color: '#D4AF37',
+      fontWeight: 'bold'
+    }}
+  >
+    Our Collections
+  </Typography>
+
+  <Grid container spacing={4}>
+    <Grid item xs={12} md={4}>
+      <Box
+        component={Link}
+        to="/products?category=men"
+        sx={{
+          display: 'block',
+          textDecoration: 'none',
+          transition: 'transform 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.03)'
+          }
+        }}
+      >
+        <Box
+          component="img"
+          src="/images/preview.png"
+          alt="Men's Collection"
+          sx={{
+            width: '100%',
+            height: 300,
+            objectFit: 'cover',
+            borderRadius: 2,
+            mb: 2
+          }}
+        />
+        <Typography 
+          variant="h5" 
+          align="center"
+          sx={{ 
+            color: '#D4AF37',
+            fontWeight: 600
+          }}
+        >
+          Men's Collection
+        </Typography>
+      </Box>
+    </Grid>
+
+    {/* Add placeholder for Women's Collection */}
+    <Grid item xs={12} md={4}>
+      <Box
+        component={Link}
+        to="/products?category=women"
+        sx={{
+          display: 'block',
+          textDecoration: 'none',
+          transition: 'transform 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.03)'
+          }
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            height: 300,
+            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+            borderRadius: 2,
+            mb: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
+        </Box>
+        <Typography 
+          variant="h5" 
+          align="center"
+          sx={{ 
+            color: '#D4AF37',
+            fontWeight: 600
+          }}
+        >
+          Women's Collection
+        </Typography>
+      </Box>
+    </Grid>
+
+    {/* Add placeholder for Featured Collection */}
+    <Grid item xs={12} md={4}>
+      <Box
+        component={Link}
+        to="/products?category=featured"
+        sx={{
+          display: 'block',
+          textDecoration: 'none',
+          transition: 'transform 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.03)'
+          }
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            height: 300,
+            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+            borderRadius: 2,
+            mb: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
+        </Box>
+        <Typography 
+          variant="h5" 
+          align="center"
+          sx={{ 
+            color: '#D4AF37',
+            fontWeight: 600
+          }}
+        >
+          Featured Collection
+        </Typography>
+      </Box>
+    </Grid>
+  </Grid>
+</Container>
     </Box>
   );
 };
