@@ -11,8 +11,11 @@ import {
   Dialog,
   DialogContent,
   IconButton,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import { useCart } from '../context/CartContext';
 
 // Sample product data - replace with your actual product data
 const products = [
@@ -38,14 +41,39 @@ const products = [
 ];
 
 const Products = () => {
+  const { addToCart } = useCart();
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
+    setSelectedSize(null); // Reset size when opening new product
   };
 
   const handleClose = () => {
     setSelectedProduct(null);
+    setSelectedSize(null);
+  };
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      return; // Don't add to cart if no size is selected
+    }
+    addToCart(selectedProduct, selectedSize);
+    setOpenSnackbar(true);
+    handleClose();
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   return (
@@ -56,7 +84,8 @@ const Products = () => {
         align="center" 
         sx={{ 
           mb: 6,
-          color: 'secondary.main',
+          color: '#D4AF37',
+          fontWeight: 'bold'
         }}
       >
         Our Products
@@ -102,7 +131,7 @@ const Products = () => {
                   component="h2" 
                   sx={{ 
                     mb: 1,
-                    color: 'secondary.main',
+                    color: '#D4AF37',
                   }}
                 >
                   {product.name}
@@ -110,7 +139,7 @@ const Products = () => {
                 <Typography 
                   variant="h6" 
                   sx={{ 
-                    color: 'primary.main',
+                    color: '#D4AF37',
                     fontWeight: 600,
                   }}
                 >
@@ -137,7 +166,7 @@ const Products = () => {
                 position: 'absolute',
                 right: 8,
                 top: 8,
-                color: 'secondary.main',
+                color: '#D4AF37',
                 zIndex: 1,
               }}
             >
@@ -164,32 +193,34 @@ const Products = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Box sx={{ p: 4 }}>
-                    <Typography variant="h4" component="h2" sx={{ mb: 2, color: 'secondary.main' }}>
+                    <Typography variant="h4" component="h2" sx={{ mb: 2, color: '#D4AF37' }}>
                       {selectedProduct.name}
                     </Typography>
-                    <Typography variant="h5" sx={{ mb: 3, color: 'primary.main', fontWeight: 600 }}>
+                    <Typography variant="h5" sx={{ mb: 3, color: '#D4AF37', fontWeight: 600 }}>
                       ${selectedProduct.price}
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }}>
                       {selectedProduct.description}
                     </Typography>
                     <Box sx={{ mb: 4 }}>
-                      <Typography variant="subtitle1" sx={{ mb: 2, color: 'secondary.main' }}>
+                      <Typography variant="subtitle1" sx={{ mb: 2, color: '#D4AF37' }}>
                         Select Size:
                       </Typography>
                       <Box sx={{ display: 'flex', gap: 1 }}>
                         {selectedProduct.sizes.map((size) => (
                           <Button
                             key={size}
-                            variant="outlined"
+                            variant={selectedSize === size ? "contained" : "outlined"}
+                            onClick={() => handleSizeSelect(size)}
                             sx={{
                               minWidth: '48px',
                               height: '48px',
-                              borderColor: 'primary.main',
-                              color: 'primary.main',
+                              borderColor: '#D4AF37',
+                              color: selectedSize === size ? 'black' : '#D4AF37',
+                              backgroundColor: selectedSize === size ? '#D4AF37' : 'transparent',
                               '&:hover': {
-                                borderColor: 'primary.dark',
-                                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                                borderColor: '#B69121',
+                                backgroundColor: selectedSize === size ? '#B69121' : 'rgba(212, 175, 55, 0.1)',
                               }
                             }}
                           >
@@ -200,14 +231,23 @@ const Products = () => {
                     </Box>
                     <Button
                       variant="contained"
-                      size="large"
                       fullWidth
+                      onClick={handleAddToCart}
+                      disabled={!selectedSize}
                       sx={{
-                        height: '48px',
-                        fontSize: '1.1rem',
+                        backgroundColor: '#D4AF37',
+                        color: 'black',
+                        py: 2,
+                        '&:hover': {
+                          backgroundColor: '#B69121',
+                        },
+                        '&.Mui-disabled': {
+                          backgroundColor: 'rgba(212, 175, 55, 0.3)',
+                          color: 'rgba(0, 0, 0, 0.4)',
+                        }
                       }}
                     >
-                      Add to Cart
+                      {selectedSize ? 'Add to Cart' : 'Select a Size'}
                     </Button>
                   </Box>
                 </Grid>
@@ -216,6 +256,29 @@ const Products = () => {
           </>
         )}
       </Dialog>
+
+      {/* Success Snackbar */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity="success" 
+          sx={{ 
+            width: '100%',
+            backgroundColor: '#D4AF37',
+            color: 'black',
+            '& .MuiAlert-icon': {
+              color: 'black'
+            }
+          }}
+        >
+          Item added to cart successfully!
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
