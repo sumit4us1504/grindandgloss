@@ -4,32 +4,33 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <Box
-  sx={{
-    background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/images/hero-fashion.jpg")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed', // This creates a parallax effect
-    minHeight: '90vh',
-    display: 'flex',
-    alignItems: 'center',
-    color: 'white',
-    position: 'relative',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(212,175,55,0.3) 100%)',
-      pointerEvents: 'none'
-    }
-  }}
->
+    <Box>
+      <Box
+        sx={{
+          background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/images/hero-fashion.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          minHeight: '90vh',
+          display: 'flex',
+          alignItems: 'center',
+          color: 'white',
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(212,175,55,0.3) 100%)',
+            pointerEvents: 'none'
+          }
+        }}
+      >
         <Container maxWidth="lg">
           <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <Typography
                 variant="h1"
                 sx={{
@@ -44,7 +45,7 @@ const Home = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  fontSize: { xs: '1.5rem', md: '1.2rem' },
+                  fontSize: { xs: '1.2rem', md: '1.5rem' },
                   mb: 4,
                   color: 'white'
                 }}
@@ -108,143 +109,142 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
+
       {/* Collections Section */}
-<Container maxWidth="lg" sx={{ py: 8 }}>
-  <Typography 
-    variant="h2" 
-    component="h2" 
-    align="center" 
-    sx={{ 
-      mb: 6,
-      color: '#D4AF37',
-      fontWeight: 'bold'
-    }}
-  >
-    Our Collections
-  </Typography>
-
-  <Grid container spacing={4}>
-    <Grid item xs={12} md={4}>
-      <Box
-        component={Link}
-        to="/products?category=men"
-        sx={{
-          display: 'block',
-          textDecoration: 'none',
-          transition: 'transform 0.3s ease',
-          '&:hover': {
-            transform: 'scale(1.03)'
-          }
-        }}
-      >
-        <Box
-          component="img"
-          src="/images/preview.png"
-          alt="Men's Collection"
-          sx={{
-            width: '100%',
-            height: 300,
-            objectFit: 'cover',
-            borderRadius: 2,
-            mb: 2
-          }}
-        />
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Typography 
-          variant="h5" 
-          align="center"
+          variant="h2" 
+          component="h2" 
+          align="center" 
           sx={{ 
+            mb: 6,
             color: '#D4AF37',
-            fontWeight: 600
+            fontWeight: 'bold'
           }}
         >
-          Men's Collection
+          Our Collections
         </Typography>
-      </Box>
-    </Grid>
 
-    {/* Add placeholder for Women's Collection */}
-    <Grid item xs={12} md={4}>
-      <Box
-        component={Link}
-        to="/products?category=women"
-        sx={{
-          display: 'block',
-          textDecoration: 'none',
-          transition: 'transform 0.3s ease',
-          '&:hover': {
-            transform: 'scale(1.03)'
-          }
-        }}
-      >
-        <Box
-          sx={{
-            width: '100%',
-            height: 300,
-            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-            borderRadius: 2,
-            mb: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
-        </Box>
-        <Typography 
-          variant="h5" 
-          align="center"
-          sx={{ 
-            color: '#D4AF37',
-            fontWeight: 600
-          }}
-        >
-          Women's Collection
-        </Typography>
-      </Box>
-    </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box
+              component={Link}
+              to="/products?category=men"
+              sx={{
+                display: 'block',
+                textDecoration: 'none',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.03)'
+                }
+              }}
+            >
+              <Box
+                component="img"
+                src="/images/preview.png"
+                alt="Men's Collection"
+                sx={{
+                  width: '100%',
+                  height: 300,
+                  objectFit: 'cover',
+                  borderRadius: 2,
+                  mb: 2
+                }}
+              />
+              <Typography 
+                variant="h5" 
+                align="center"
+                sx={{ 
+                  color: '#D4AF37',
+                  fontWeight: 600
+                }}
+              >
+                Men's Collection
+              </Typography>
+            </Box>
+          </Grid>
 
-    {/* Add placeholder for Featured Collection */}
-    <Grid item xs={12} md={4}>
-      <Box
-        component={Link}
-        to="/products?category=featured"
-        sx={{
-          display: 'block',
-          textDecoration: 'none',
-          transition: 'transform 0.3s ease',
-          '&:hover': {
-            transform: 'scale(1.03)'
-          }
-        }}
-      >
-        <Box
-          sx={{
-            width: '100%',
-            height: 300,
-            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-            borderRadius: 2,
-            mb: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
-        </Box>
-        <Typography 
-          variant="h5" 
-          align="center"
-          sx={{ 
-            color: '#D4AF37',
-            fontWeight: 600
-          }}
-        >
-          Featured Collection
-        </Typography>
-      </Box>
-    </Grid>
-  </Grid>
-</Container>
+          <Grid item xs={12} md={4}>
+            <Box
+              component={Link}
+              to="/products?category=women"
+              sx={{
+                display: 'block',
+                textDecoration: 'none',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.03)'
+                }
+              }}
+            >
+              <Box
+                sx={{
+                  width: '100%',
+                  height: 300,
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  borderRadius: 2,
+                  mb: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
+              </Box>
+              <Typography 
+                variant="h5" 
+                align="center"
+                sx={{ 
+                  color: '#D4AF37',
+                  fontWeight: 600
+                }}
+              >
+                Women's Collection
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Box
+              component={Link}
+              to="/products?category=featured"
+              sx={{
+                display: 'block',
+                textDecoration: 'none',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.03)'
+                }
+              }}
+            >
+              <Box
+                sx={{
+                  width: '100%',
+                  height: 300,
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  borderRadius: 2,
+                  mb: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Typography variant="h6" sx={{ color: '#D4AF37' }}>Coming Soon</Typography>
+              </Box>
+              <Typography 
+                variant="h5" 
+                align="center"
+                sx={{ 
+                  color: '#D4AF37',
+                  fontWeight: 600
+                }}
+              >
+                Featured Collection
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 };
