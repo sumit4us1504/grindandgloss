@@ -23,7 +23,7 @@ const Home = () => {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: '2.5rem', md: '4rem' },
+                  fontSize: { xs: '2rem', md: '3rem' },
                   fontWeight: 'bold',
                   mb: 2,
                   color: '#D4AF37'
