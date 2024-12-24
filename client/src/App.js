@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { CssBaseline, Container } from '@mui/material';
+import About from './pages/About';
 
 // Import pages (we'll create these next)
 import Navbar from './components/Navbar';
@@ -144,6 +145,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:category" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </Container>
       </Router>
