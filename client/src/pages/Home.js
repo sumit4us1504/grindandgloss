@@ -34,7 +34,7 @@ const Home = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  fontSize: { xs: '1.5rem', md: '2rem' },
+                  fontSize: { xs: '1.5rem', md: '1.2rem' },
                   mb: 4,
                   color: 'white'
                 }}
