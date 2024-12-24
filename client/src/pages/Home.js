@@ -4,19 +4,29 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <Box>
-      {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '80vh',
-          display: 'flex',
-          alignItems: 'center',
-          color: 'white',
-        }}
-      >
+    <Box
+  sx={{
+    background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/images/hero-fashion.jpg")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed', // This creates a parallax effect
+    minHeight: '90vh',
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    position: 'relative',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(212,175,55,0.3) 100%)',
+      pointerEvents: 'none'
+    }
+  }}
+>
         <Container maxWidth="lg">
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
