@@ -26,7 +26,7 @@ const theme = createTheme({
       contrastText: '#D4AF37',
     },
     background: {
-      default: '#FFFFFF',
+      default: '#FF6F61', // Coral background
       paper: '#F8F8F8',
     },
     text: {
