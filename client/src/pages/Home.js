@@ -14,7 +14,7 @@ const Home = () => {
           minHeight: '90vh',
           display: 'flex',
           alignItems: 'center',
-          color: 'coral',
+          color: '#FF6F61',
           position: 'relative',
           '&::before': {
             content: '""',
