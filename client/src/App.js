@@ -1,33 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { CssBaseline, Container, Box } from '@mui/material';
+import { ThemeProvider, createTheme, Box, CssBaseline, Container } from '@mui/material';
 import About from './pages/About';
-import { ThemeProvider, createTheme, Box } from '@mui/material';
 
-// Import pages (we'll create these next)
+// Import pages
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 
 const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: '#FF6F61',
+        },
+      },
+    },
+  },
   palette: {
+    mode: 'light',
     primary: {
-      main: '#D4AF37', // Gold from logo
+      main: '#D4AF37',
       light: '#E5C158',
       dark: '#B39329',
       contrastText: '#000000',
     },
     secondary: {
-      main: '#000000', // Black
+      main: '#000000',
       light: '#2C2C2C',
       dark: '#000000',
       contrastText: '#D4AF37',
     },
     background: {
-      default: '#FF6F61', // Coral background
+      default: '#FF6F61',
       paper: '#F8F8F8',
     },
     text: {
@@ -57,104 +65,90 @@ const theme = createTheme({
         transform: 'translateX(-50%)',
         width: '60px',
         height: '3px',
-        background: '#D4AF37',
+        backgroundColor: '#D4AF37',
       },
     },
     h3: {
       fontWeight: 600,
+      color: '#D4AF37',
+    },
+    h4: {
+      fontWeight: 600,
       color: '#000000',
     },
+    h5: {
+      fontWeight: 500,
+      color: '#D4AF37',
+    },
+    h6: {
+      fontWeight: 500,
+      color: '#000000',
+    },
+    subtitle1: {
+      fontSize: '1.1rem',
+      color: '#666666',
+    },
+    subtitle2: {
+      fontSize: '0.9rem',
+      color: '#888888',
+    },
+    body1: {
+      fontSize: '1rem',
+      color: '#333333',
+      lineHeight: 1.7,
+    },
+    body2: {
+      fontSize: '0.9rem',
+      color: '#666666',
+      lineHeight: 1.6,
+    },
     button: {
+      textTransform: 'none',
       fontWeight: 600,
-      textTransform: 'uppercase',
     },
   },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: '0',
-          padding: '12px 24px',
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: '-100%',
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.2), transparent)',
-            transition: 'all 0.6s',
-          },
-          '&:hover::before': {
-            left: '100%',
-          },
-        },
-        contained: {
-          backgroundColor: '#D4AF37',
-          color: '#000000',
-          '&:hover': {
-            backgroundColor: '#B39329',
-            boxShadow: '0 6px 20px rgba(212, 175, 55, 0.3)',
-          },
-        },
-        outlined: {
-          borderColor: '#D4AF37',
-          borderWidth: '2px',
-          color: '#D4AF37',
-          '&:hover': {
-            borderColor: '#B39329',
-            borderWidth: '2px',
-            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-          },
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: '0',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-          '&:hover': {
-            boxShadow: '0 8px 30px rgba(212, 175, 55, 0.2)',
-            transform: 'translateY(-4px)',
-            transition: 'all 0.3s ease',
-          },
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#000000',
-        },
-      },
-    },
+  shape: {
+    borderRadius: 8,
   },
+  shadows: [
+    'none',
+    '0px 2px 4px rgba(0,0,0,0.1)',
+    '0px 4px 8px rgba(0,0,0,0.1)',
+    '0px 8px 16px rgba(0,0,0,0.1)',
+    '0px 16px 24px rgba(0,0,0,0.1)',
+    '0px 24px 32px rgba(0,0,0,0.1)',
+  ],
 });
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme />
-      <Box sx={{ 
-        bgcolor: 'background.default',
-        minHeight: '100vh'
-      }}>
-        <Router>
-          <Navbar />
-          <Container>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:category" element={<Products />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </Container>
-        </Router>
-      </Box>
+      <CssBaseline />
+      <Box 
+        sx={{ 
+          backgroundColor: '#FF6F61 !important',
+          minHeight: '100vh',
+          width: '100%',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1
+        }} 
+      />
+      <Router>
+        <Navbar />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:category" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Container>
+      </Router>
     </ThemeProvider>
   );
 }
