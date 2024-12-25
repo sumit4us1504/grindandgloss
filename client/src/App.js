@@ -6,13 +6,14 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
+import { CartProvider } from './context/CartContext';
 
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: 'coral',
+          backgroundColor: 'mint green',
         },
       },
     },
@@ -32,7 +33,7 @@ const theme = createTheme({
       contrastText: '#D4AF37',
     },
     background: {
-      default: 'coral',
+      default: 'Mint Green',
       paper: '#F8F8F8',
     },
     text: {
@@ -119,34 +120,36 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box 
-        sx={{ 
-          backgroundColor: 'coral !important',
-          minHeight: '100vh',
-          width: '100%',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: -1
-        }} 
-      />
-      <Router>
-        <Navbar />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:category" element={<Products />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </Container>
-      </Router>
-    </ThemeProvider>
+    <CartProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box 
+          sx={{ 
+            backgroundColor: 'coral !important',
+            minHeight: '100vh',
+            width: '100%',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: -1
+          }} 
+        />
+        <Router>
+          <Navbar />
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:category" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </Container>
+        </Router>
+      </ThemeProvider>
+    </CartProvider>
   );
 }
 
