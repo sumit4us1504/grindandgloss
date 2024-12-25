@@ -2,8 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { CssBaseline, Container } from '@mui/material';
+import { CssBaseline, Container, Box } from '@mui/material';
 import About from './pages/About';
+import { ThemeProvider, createTheme, Box } from '@mui/material';
 
 // Import pages (we'll create these next)
 import Navbar from './components/Navbar';
@@ -136,19 +137,24 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Navbar />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:category" element={<Products />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </Container>
-      </Router>
+      <CssBaseline enableColorScheme />
+      <Box sx={{ 
+        bgcolor: 'background.default',
+        minHeight: '100vh'
+      }}>
+        <Router>
+          <Navbar />
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:category" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </Container>
+        </Router>
+      </Box>
     </ThemeProvider>
   );
 }
