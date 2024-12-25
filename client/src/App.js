@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, Box, CssBaseline, Container } from '@mui/material';
 import About from './pages/About';
-
-// Import pages
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -15,7 +12,7 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: 'Coral',
+          backgroundColor: 'coral',
         },
       },
     },
@@ -35,7 +32,7 @@ const theme = createTheme({
       contrastText: '#D4AF37',
     },
     background: {
-      default: '#FF6F61',
+      default: 'coral',
       paper: '#F8F8F8',
     },
     text: {
@@ -126,7 +123,7 @@ function App() {
       <CssBaseline />
       <Box 
         sx={{ 
-          backgroundColor: '#FF6F61 !important',
+          backgroundColor: 'coral !important',
           minHeight: '100vh',
           width: '100%',
           position: 'fixed',
