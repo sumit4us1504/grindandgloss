@@ -13,7 +13,7 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: 'mint green',
+          backgroundColor: '#98FF98',
         },
       },
     },
@@ -33,7 +33,7 @@ const theme = createTheme({
       contrastText: '#D4AF37',
     },
     background: {
-      default: 'Mint Green',
+      default: '#98FF98',
       paper: '#F8F8F8',
     },
     text: {
@@ -125,7 +125,7 @@ function App() {
         <CssBaseline />
         <Box 
           sx={{ 
-            backgroundColor: 'coral !important',
+            backgroundColor: '#98FF98 !important',
             minHeight: '100vh',
             width: '100%',
             position: 'fixed',
